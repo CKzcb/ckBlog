@@ -9,30 +9,66 @@
 package main
 
 import (
-	"flag"
-	"fmt"
+	"github.com/CKzcb/ckBlog/global"
 	"github.com/CKzcb/ckBlog/internal/routers"
+	"github.com/CKzcb/ckBlog/pkg/setting"
+	"github.com/gin-gonic/gin"
+	"log"
 	"net/http"
 	"time"
 )
 
-var host string
-var port int
-
 func init() {
-	flag.StringVar(&host, "host", "127.0.0.1", "please input listener host")
-	flag.IntVar(&port, "port", 8080, "please input listener port")
-	flag.Parse()
+	err := setupSetting()
+	if err != nil {
+		log.Fatalf("init.setupSetting err: %v", err)
+	}
 }
 
 func main() {
+	gin.SetMode(global.ServerSetting.RunMode)
 	router := routers.NewRouter()
 	s := &http.Server{
-		Addr:           fmt.Sprintf("%s:%d", host, port),
+		Addr:           ":" + global.ServerSetting.HttpPort,
 		Handler:        router,
-		ReadTimeout:    10 * time.Second,
-		WriteTimeout:   10 * time.Second,
+		ReadTimeout:    global.ServerSetting.ReadTimeout,
+		WriteTimeout:   global.ServerSetting.WriteTimeout,
 		MaxHeaderBytes: 1 << 20,
 	}
 	_ = s.ListenAndServe()
+}
+
+//
+// setupSetting
+//  @Description: init setting from configs
+//  @return error
+//
+func setupSetting() error {
+	newSetting, err := setting.NewSetting()
+	if err != nil {
+		return err
+	}
+	// read server config
+	err = newSetting.ReadSection("Server", &global.ServerSetting)
+	if err != nil {
+		return err
+	}
+
+	// read app config
+	err = newSetting.ReadSection("App", &global.AppSetting)
+	if err != nil {
+		return err
+	}
+
+	// read database config
+	err = newSetting.ReadSection("Database", &global.DatabaseSetting)
+	if err != nil {
+		return err
+	}
+
+	// handle timeout duration
+	global.ServerSetting.ReadTimeout *= time.Second
+	global.ServerSetting.WriteTimeout *= time.Second
+
+	return nil
 }
