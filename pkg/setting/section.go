@@ -33,7 +33,7 @@ type DataBaseSettingS struct {
 	DBName        string
 	TablePrefix   string
 	Charset       string
-	ParseTIme     bool
+	ParseTime     bool
 	MaxIdleConnes int
 	MaxOpenConnes int
 }

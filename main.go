@@ -10,6 +10,7 @@ package main
 
 import (
 	"github.com/CKzcb/ckBlog/global"
+	"github.com/CKzcb/ckBlog/internal/model"
 	"github.com/CKzcb/ckBlog/internal/routers"
 	"github.com/CKzcb/ckBlog/pkg/setting"
 	"github.com/gin-gonic/gin"
@@ -19,9 +20,15 @@ import (
 )
 
 func init() {
+	// config
 	err := setupSetting()
 	if err != nil {
 		log.Fatalf("init.setupSetting err: %v", err)
+	}
+	// db
+	err = setupDBEngine()
+	if err != nil {
+		log.Fatalf("init.setupDBEngine err: %v", err)
 	}
 }
 
@@ -70,5 +77,14 @@ func setupSetting() error {
 	global.ServerSetting.ReadTimeout *= time.Second
 	global.ServerSetting.WriteTimeout *= time.Second
 
+	return nil
+}
+
+func setupDBEngine() error {
+	var err error
+	global.DBEngine, err = model.NewDBEngine(global.DatabaseSetting)
+	if err != nil {
+		return err
+	}
 	return nil
 }
