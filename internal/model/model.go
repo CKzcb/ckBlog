@@ -12,6 +12,7 @@ import (
 	"fmt"
 	"github.com/CKzcb/ckBlog/global"
 	"github.com/CKzcb/ckBlog/pkg/setting"
+	_ "github.com/go-sql-driver/mysql"
 	"github.com/jinzhu/gorm"
 )
 

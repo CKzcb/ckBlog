@@ -8,10 +8,14 @@
 
 package global
 
-import "github.com/CKzcb/ckBlog/pkg/setting"
+import (
+	"github.com/CKzcb/ckBlog/pkg/logger"
+	"github.com/CKzcb/ckBlog/pkg/setting"
+)
 
 var (
 	ServerSetting   *setting.ServerSettingS
 	AppSetting      *setting.AppSettingS
 	DatabaseSetting *setting.DataBaseSettingS
+	Logger          *logger.Logger
 )
