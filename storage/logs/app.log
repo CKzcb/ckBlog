@@ -1,1 +1,6 @@
 2023/03/16 08:17:43 {"callers":["H:/goProject/ckBlog/main.go: 36 main.init.0"],"level":"info","message":"the app init ...","time":1678925863274397500}
+2023/03/16 09:51:07 {"callers":["H:/goProject/ckBlog/main.go: 36 main.init.0"],"level":"info","message":"the app init ...","time":1678931467865060000}
+2023/03/16 09:52:59 {"callers":["H:/goProject/ckBlog/main.go: 36 main.init.0"],"level":"info","message":"the app init ...","time":1678931579422475800}
+2023/03/16 09:56:25 {"callers":["H:/goProject/ckBlog/main.go: 36 main.init.0"],"level":"info","message":"the app init ...","time":1678931785277599300}
+2023/03/16 09:58:07 {"callers":["H:/goProject/ckBlog/main.go: 36 main.init.0"],"level":"info","message":"the app init ...","time":1678931887492150100}
+2023/03/16 13:10:45 {"callers":["H:/goProject/ckBlog/main.go: 38 main.init.0"],"level":"info","message":"the app init ...","time":1678943445398605600}

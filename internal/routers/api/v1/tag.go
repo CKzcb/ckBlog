@@ -17,8 +17,14 @@ func NewTag() Tag {
 	return Tag{}
 }
 
-func (t Tag) Get(c *gin.Context)    {}
-func (t Tag) List(c *gin.Context)   {}
-func (t Tag) Create(c *gin.Context) {}
-func (t Tag) Update(c *gin.Context) {}
-func (t Tag) Delete(c *gin.Context) {}
+// Get
+// @Summary get tag
+// @Produce json
+// @Success 200 {string} string "success"
+// @Router /api/v1/tags [get]
+//
+func (t Tag) Get(ctx *gin.Context)    {}
+func (t Tag) List(ctx *gin.Context)   {}
+func (t Tag) Create(ctx *gin.Context) {}
+func (t Tag) Update(ctx *gin.Context) {}
+func (t Tag) Delete(ctx *gin.Context) {}

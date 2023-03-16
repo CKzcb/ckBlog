@@ -1,0 +1,16 @@
+info:
+  contact: {}
+  license: {}
+  title: ck blog v1
+paths:
+  /api/v1/tags:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            type: string
+      summary: get tag
+swagger: "2.0"
